@@ -1,0 +1,21 @@
+<div *ngIf="!list">
+    <span #charging>
+        <ng-content select="[charging]"></ng-content>
+    </span>
+    <span *ngIf="!charging.innerHTML.trim()">
+        <mat-spinner></mat-spinner>
+    </span>
+</div>
+
+<div *ngIf="list?.length === 0">
+    <span #empty>
+        <ng-content select="[empty]"></ng-content>
+    </span>
+    <span *ngIf="!empty.innerHTML.trim()">
+        <mat-spinner></mat-spinner>
+    </span>
+</div>
+
+  <ng-container *ngIf="list && list.length > 0">
+    <ng-content select="[content]"></ng-content>
+  </ng-container>

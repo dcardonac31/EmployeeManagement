@@ -1,0 +1,38 @@
+<mat-toolbar color="primary">
+<span>
+  <a mat-button routerLink="">
+      <mat-icon>badge</mat-icon> Employee Management
+  </a>  
+</span>
+<app-authorized [rol]="'admin'">
+    <ng-container authorized>
+        <div>
+            <a mat-button routerLink="employee/create">
+                <mat-icon>add_circle</mat-icon> Create
+            </a>
+        </div>
+        <div>
+            <a mat-button routerLink="employee/report">
+                <mat-icon>summarize</mat-icon> Report
+            </a>
+        </div>
+    </ng-container>
+</app-authorized>
+
+<div class="space"></div>
+
+<app-authorized>
+    <ng-container authorized>
+        <span class="greeting">Hola, {{securityService.getJwtField('email')}}</span>
+        <a mat-button (click)="securityService.logout()"><mat-icon>logout</mat-icon> Logout</a>
+    </ng-container>
+    <ng-container noAuthorized>
+        <a mat-button routerLink="login"><mat-icon>login</mat-icon> Login</a>
+        <a mat-button routerLink="register"><mat-icon>person_add</mat-icon> Register</a>
+    </ng-container>
+</app-authorized>
+
+
+
+
+</mat-toolbar>

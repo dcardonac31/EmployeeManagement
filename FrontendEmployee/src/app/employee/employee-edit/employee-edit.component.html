@@ -1,0 +1,7 @@
+<h2>Employee Edit</h2>
+
+<app-employee-form *ngIf="model"
+[model]="model"
+(onSubmit)="saveChanges($event)"></app-employee-form>
+
+<mat-spinner *ngIf="!model"></mat-spinner>

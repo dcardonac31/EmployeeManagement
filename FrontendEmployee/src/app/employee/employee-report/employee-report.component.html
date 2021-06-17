@@ -1,0 +1,55 @@
+<h2>Employee Report</h2>
+
+<div class="btn-excel">
+    <button mat-raised-button color="primary" (click)="exportExcel()">Export Excel</button>
+</div>
+
+<app-generic-list [list]="employeesList">
+    <ng-container content>
+        <mat-table [dataSource]="employeesList" class="mat-elevation-z8">
+            <ng-container matColumnDef="id">
+                <mat-header-cell *matHeaderCellDef>Id</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.id}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="idDocument">
+                <mat-header-cell *matHeaderCellDef>Id Document</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.idDocument}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="name">
+                <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.name}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="lastName">
+                <mat-header-cell *matHeaderCellDef>Last Name</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.lastName}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="hiringDate">
+                <mat-header-cell *matHeaderCellDef>Hiring Date</mat-header-cell>
+                 <mat-cell *matCellDef="let element">{{element.hiringDate | date:"dd-MM-yyyy"}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="position">
+                <mat-header-cell *matHeaderCellDef>Position</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.position}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="actions">
+                <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                    <a routerLink="/employee/edit/{{element.id}}"
+                    mat-flat-button color="primary">Edit</a>
+                </mat-cell>
+            </ng-container>
+        
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+        <mat-paginator 
+        [pageSizeOptions]="[5,10,20,50]" 
+        showFirstLastButtons
+        [length]="cantTotalRecords" [pageSize]="cantRecordsToShow"
+        (page)="paginationRefresh($event)"
+        >
+        </mat-paginator>
+
+
+    </ng-container>
+</app-generic-list>
